@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - TechFest 2024</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-calendar-alt"></i>
+                <span>TechFest 2024 - Admin</span>
+            </div>
+            <div class="nav-menu">
+                <a href="../main-page/index.html" class="nav-link">Home</a>
+                <a href="../registration/regi.html" class="nav-link">Register</a>
+                <a href="admin.html" class="nav-link active">Admin</a>
+            </div>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Admin Dashboard -->
+    <section class="admin-section">
+        <div class="container">
+            <div class="admin-header">
+                <h1>Admin Dashboard</h1>
+                <p>Manage participant registrations and event data</p>
+            </div>
+
+            <!-- Statistics Cards -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3 id="totalParticipants">0</h3>
+                        <p>Total Participants</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-calendar-check"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3 id="todayRegistrations">0</h3>
+                        <p>Today's Registrations</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3 id="eventCount">4</h3>
+                        <p>Total Events</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3 id="deadlineStatus">7 days</h3>
+                        <p>Days Remaining</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Controls Section -->
+            <div class="controls-section">
+                <div class="search-filter-container">
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="searchInput" placeholder="Search participants...">
+                    </div>
+                    <div class="filter-controls">
+                        <select id="branchFilter">
+                            <option value="">All Branches</option>
+                            <option value="Computer Science">Computer Science</option>
+                            <option value="Information Technology">Information Technology</option>
+                            <option value="Electronics">Electronics</option>
+                            <option value="Mechanical">Mechanical</option>
+                            <option value="Civil">Civil</option>
+                            <option value="Electrical">Electrical</option>
+                            <option value="Other">Other</option>
+                        </select>
+                        <select id="eventFilter">
+                            <option value="">All Events</option>
+                            <option value="Coding Competition">Coding Competition</option>
+                            <option value="Hackathon">Hackathon</option>
+                            <option value="Tech Workshops">Tech Workshops</option>
+                            <option value="Tech Talks">Tech Talks</option>
+                            <option value="All Events">All Events</option>
+                        </select>
+                        <select id="yearFilter">
+                            <option value="">All Years</option>
+                            <option value="1st Year">1st Year</option>
+                            <option value="2nd Year">2nd Year</option>
+                            <option value="3rd Year">3rd Year</option>
+                            <option value="4th Year">4th Year</option>
+                            <option value="Graduate">Graduate</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="sort-controls">
+                    <label for="sortBy">Sort by:</label>
+                    <select id="sortBy">
+                        <option value="name">Name (A-Z)</option>
+                        <option value="name-desc">Name (Z-A)</option>
+                        <option value="year">Year</option>
+                        <option value="branch">Branch</option>
+                        <option value="event">Event</option>
+                        <option value="date">Registration Date</option>
+                    </select>
+                    <button id="exportBtn" class="btn btn-secondary">
+                        <i class="fas fa-download"></i>
+                        Export Data
+                    </button>
+                    <button id="clearAllBtn" class="btn btn-danger">
+                        <i class="fas fa-trash"></i>
+                        Clear All Data
+                    </button>
+                </div>
+            </div>
+
+            <!-- Participants Table -->
+            <div class="table-container">
+                <div class="table-header">
+                    <h3>Participant List</h3>
+                    <div class="table-actions">
+                        <span id="resultsCount">0 participants found</span>
+                    </div>
+                </div>
+                <div class="table-wrapper">
+                    <table class="participants-table">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>Year</th>
+                                <th>Branch</th>
+                                <th>Event</th>
+                                <th>Experience</th>
+                                <th>Registration Date</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="participantsTableBody">
+                            <!-- Participants will be dynamically loaded here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Pagination -->
+            <div class="pagination-container">
+                <div class="pagination-info">
+                    <span id="paginationInfo">Showing 0-0 of 0 participants</span>
+                </div>
+                <div class="pagination-controls">
+                    <button id="prevPage" class="btn btn-secondary" disabled>
+                        <i class="fas fa-chevron-left"></i>
+                        Previous
+                    </button>
+                    <span id="pageNumbers"></span>
+                    <button id="nextPage" class="btn btn-secondary" disabled>
+                        Next
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Confirmation Modal -->
+    <div id="confirmationModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalTitle">Confirm Action</h3>
+                <button class="close-btn" id="closeModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p id="modalMessage">Are you sure you want to perform this action?</p>
+            </div>
+            <div class="modal-footer">
+                <button id="confirmAction" class="btn btn-danger">Confirm</button>
+                <button id="cancelAction" class="btn btn-secondary">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>TechFest 2024 - Admin</h3>
+                    <p>Event management and participant administration.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="../main-page/index.html">Home</a></li>
+                        <li><a href="../registration/regi.html">Register</a></li>
+                        <li><a href="admin.html">Admin</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Admin Tools</h4>
+                    <ul>
+                        <li><a href="#" id="exportDataLink">Export Data</a></li>
+                        <li><a href="#" id="backupDataLink">Backup Data</a></li>
+                        <li><a href="#" id="clearDataLink">Clear All Data</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 TechFest. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="admin.js"></script>
+</body>
+</html>

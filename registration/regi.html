@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Registration - TechFest 2024</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-calendar-alt"></i>
+                <span>TechFest 2024</span>
+            </div>
+            <div class="nav-menu">
+                <a href="../main-page/index.html" class="nav-link">Home</a>
+                <a href="regi.html" class="nav-link active">Register</a>
+                <a href="../admin/admin.html" class="nav-link">Admin</a>
+            </div>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Registration Form Section -->
+    <section class="registration-section">
+        <div class="container">
+            <div class="registration-container">
+                <div class="registration-header">
+                    <h1>Event Registration</h1>
+                    <p>Join TechFest 2024 and be part of the ultimate technical experience!</p>
+                </div>
+
+                <div class="registration-form-container">
+                    <form id="registrationForm" class="registration-form">
+                        <div class="form-group">
+                            <label for="name">Full Name *</label>
+                            <input type="text" id="name" name="name" required>
+                            <span class="error-message" id="name-error"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email Address *</label>
+                            <input type="email" id="email" name="email" required>
+                            <span class="error-message" id="email-error"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phone">Phone Number *</label>
+                            <input type="tel" id="phone" name="phone" required>
+                            <span class="error-message" id="phone-error"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="year">Academic Year *</label>
+                            <select id="year" name="year" required>
+                                <option value="">Select Year</option>
+                                <option value="1st Year">1st Year</option>
+                                <option value="2nd Year">2nd Year</option>
+                                <option value="3rd Year">3rd Year</option>
+                                <option value="4th Year">4th Year</option>
+                                <option value="Graduate">Graduate</option>
+                                <option value="Other">Other</option>
+                            </select>
+                            <span class="error-message" id="year-error"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="branch">Branch/Department *</label>
+                            <select id="branch" name="branch" required>
+                                <option value="">Select Branch</option>
+                                <option value="Computer Science">Computer Science</option>
+                                <option value="Information Technology">Information Technology</option>
+                                <option value="Electronics">Electronics</option>
+                                <option value="Mechanical">Mechanical</option>
+                                <option value="Civil">Civil</option>
+                                <option value="Electrical">Electrical</option>
+                                <option value="Other">Other</option>
+                            </select>
+                            <span class="error-message" id="branch-error"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="event">Select Event *</label>
+                            <select id="event" name="event" required>
+                                <option value="">Select Event</option>
+                                <option value="Coding Competition">Coding Competition</option>
+                                <option value="Hackathon">Hackathon</option>
+                                <option value="Tech Workshops">Tech Workshops</option>
+                                <option value="Tech Talks">Tech Talks</option>
+                                <option value="All Events">All Events</option>
+                            </select>
+                            <span class="error-message" id="event-error"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="experience">Experience Level</label>
+                            <select id="experience" name="experience">
+                                <option value="">Select Experience</option>
+                                <option value="Beginner">Beginner</option>
+                                <option value="Intermediate">Intermediate</option>
+                                <option value="Advanced">Advanced</option>
+                                <option value="Expert">Expert</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="comments">Additional Comments</label>
+                            <textarea id="comments" name="comments" rows="4" placeholder="Any additional information or special requirements..."></textarea>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary" id="submitBtn">
+                                <i class="fas fa-paper-plane"></i>
+                                Register Now
+                            </button>
+                            <button type="button" class="btn btn-secondary" id="clearBtn">
+                                <i class="fas fa-eraser"></i>
+                                Clear Form
+                            </button>
+                        </div>
+
+                        <div class="form-message" id="formMessage"></div>
+                    </form>
+                </div>
+
+                <!-- Registration Status -->
+                <div class="registration-status">
+                    <div class="status-card">
+                        <div class="status-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="status-info">
+                            <h3>Total Registrations</h3>
+                            <p id="totalRegistrations">0</p>
+                        </div>
+                    </div>
+                    <div class="status-card">
+                        <div class="status-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="status-info">
+                            <h3>Registration Deadline</h3>
+                            <p id="deadlineInfo">7 days remaining</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>TechFest 2024</h3>
+                    <p>Bringing together the best minds in technology for an unforgettable experience.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="../main-page/index.html">Home</a></li>
+                        <li><a href="regi.html">Register</a></li>
+                        <li><a href="../admin/admin.html">Admin</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>Email: techfest2024@university.edu</p>
+                    <p>Phone: +1 (555) 123-4567</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 TechFest. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="front.js"></script>
+</body>
+</html>
